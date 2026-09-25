@@ -1,0 +1,58 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Search Participant</h2>
+
+    <form method="GET">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search by name, age or institution"
+        >
+
+        <button type="submit">
+            Search
+        </button>
+
+    </form>
+
+    <br>
+
+    {% if error %}
+
+        <h3>{{ error }}</h3>
+
+    {% else %}
+
+        <table border="1">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Institution</th>
+            </tr>
+
+            {% for i in participant %}
+
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.age }}</td>
+                <td>{{ i.institution }}</td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
+

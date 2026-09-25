@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Participants
+{% endblock %}
+
+{% block content %}
+
+<!-- Search -->
+<form method="GET" class="mb-4">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search participant"
+        value="{{ request.GET.search }}"
+        class="form-control"
+        style="width: 200px;"
+    >
+
+    <button type="submit" class="btn btn-primary mt-2">
+        Search
+    </button>
+
+</form>
+
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h1 class="fw-bold">
+            Participants
+        </h1>
+
+        <p class="text-muted mb-0">
+            Registered quiz participants
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Class</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Institution</th>
+                        <th>Score</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for participant in participants %}
+
+                    <tr>
+
+                        <td>{{ participant.id }}</td>
+
+                        <td class="fw-semibold">
+                            {{ participant.name }}
+                        </td>
+
+                        <td>
+                            {{ participant.user.username }}
+                        </td>
+
+                        <td>
+                            {{ participant.student_class }}
+                        </td>
+
+                        <td>
+                            {{ participant.age }}
+                        </td>
+
+                        <td>
+                            {{ participant.gender }}
+                        </td>
+
+                        <td>
+                            {{ participant.institution }}
+                        </td>
+
+                        <td>
+                            <span class="badge bg-primary">
+                                {{ participant.score }}
+                            </span>
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+                        <td colspan="8" class="text-center py-4">
+                            No participants found.
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
